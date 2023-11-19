@@ -83,7 +83,7 @@ public class ParentService {
         String city = sc.nextLine();
         System.out.println("Enter the state: ");
         String state = sc.nextLine();
-        System.out.println("Enter the zip Code (In Number): ");
+        System.out.println("Enter the zip Code (Numeric Only): ");
         String zip = sc.nextLine();
 
         Validator validator = new Validator();
