@@ -16,7 +16,11 @@ public class ParentService {
         ParentRepository parentRepository = new ParentRepository();
         int dataSize = parentRepository.getAllParents().size();
         if (dataSize == 0)
-            System.out.println("No data available. Please insert some data.");
+        {
+            System.out.println("-----------------------------------------------------------------------------");
+            System.err.println("No data available. Please insert some data.");
+        }
+
         else {
             System.out.println("-----------------------------------------------------------------------------");
             System.out.println("Enter the id of which you want to delete");
@@ -25,14 +29,14 @@ public class ParentService {
                 Integer id = sc.nextInt();
                 ParentEntity parentEntity = parentRepository.findById(id);
                 if (Objects.isNull(parentEntity))
-                    System.out.println("Invalid Id!");
+                    System.err.println("Invalid Id!");
                 else {
                     parentRepository.deleteByIdParent(id);
                     System.out.println("Here is table data -");
                     displayCurrentTable();
                 }
             } catch (Exception e) {
-                System.out.println("Invalid Id!");
+                System.err.println("Invalid Id!");
             }
 
         }
@@ -43,7 +47,7 @@ public class ParentService {
         ParentRepository parentRepository = new ParentRepository();
         int dataSize = parentRepository.getAllParents().size();
         if (dataSize == 0)
-            System.out.println("No data available. Please insert some data.");
+            System.err.println("No data available. Please insert some data.");
         else {
             parentRepository = new ParentRepository();
             displayCurrentTable();
@@ -54,10 +58,10 @@ public class ParentService {
                 Integer id = sc.nextInt();
                 ParentEntity parentEntity = parentRepository.findById(id);
                 if (Objects.isNull(parentEntity))
-                    System.out.println("Invalid Id!");
+                    System.err.println("Invalid Id!");
                 parentRepository.updateParent(id);
             } catch (Exception e) {
-                System.out.println("Invalid Id!");
+                System.err.println("Invalid Id!");
             }
             System.out.println("Here is the table data -");
             displayCurrentTable();
@@ -85,7 +89,7 @@ public class ParentService {
         Validator validator = new Validator();
         if (!validator.validateName(firstName) || !validator.validateName(lastName) || !validator.validateState(state) ||
                 !validator.validateCity(city) || !validator.validateStreet(street) || !validator.validateZip(zip))
-            System.out.println("Invalid input data! Try again with valid input type.");
+            System.err.println("Invalid input data! Try again with valid input type.");
         else {
             ParentRepository parentRepository = new ParentRepository();
             ParentEntity parentEntity = new ParentEntity();
