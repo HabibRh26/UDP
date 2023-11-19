@@ -24,7 +24,7 @@ public class ParentService {
                 Scanner sc = new Scanner(System.in);
                 Integer id = sc.nextInt();
                 ParentEntity parentEntity = parentRepository.findById(id);
-                if (!Objects.isNull(parentEntity))
+                if (Objects.isNull(parentEntity))
                     System.out.println("Invalid Id!");
                 else {
                     parentRepository.deleteByIdParent(id);
@@ -53,7 +53,7 @@ public class ParentService {
                 Scanner sc = new Scanner(System.in);
                 Integer id = sc.nextInt();
                 ParentEntity parentEntity = parentRepository.findById(id);
-                if (!Objects.isNull(parentEntity))
+                if (Objects.isNull(parentEntity))
                     System.out.println("Invalid Id!");
                 parentRepository.updateParent(id);
             } catch (Exception e) {
