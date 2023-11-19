@@ -117,8 +117,11 @@ public class ParentService {
     public void displayCurrentTable() {
         ParentRepository parentRepository = new ParentRepository();
         int dataSize = parentRepository.getAllParents().size();
-        if (dataSize == 0)
-            System.out.println("No data available. Please insert some data.");
+        if (dataSize == 0) {
+            System.out.println("-----------------------------------------------------------------------------");
+            System.err.println("No data available. Please insert some data.");
+        }
+
         else {
             List<ParentEntity> parents = parentRepository.getAllParents();
             for (ParentEntity parent : parents) {
