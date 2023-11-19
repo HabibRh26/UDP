@@ -1,11 +1,13 @@
 package org.example.repository;
 
 
+import org.example.Utils.Validator;
 import org.example.config.DbConnector;
 import org.example.entities.AddressEntity;
 import org.example.entities.ParentEntity;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ParentRepository extends DbConnector {
@@ -59,6 +61,9 @@ public class ParentRepository extends DbConnector {
             ParentEntity existingParent = super.getEm().find(ParentEntity.class, updateId);
             if (existingParent != null) {
                 existingParent = loadUpdatedData(existingParent);
+                if (Objects.isNull(existingParent)) {
+                    return null;
+                }
                 super.getEm().merge(existingParent); // Merge changes to the existing entity
                 super.getEm().getTransaction().commit();
                 System.out.println("Update operation successful");
@@ -88,8 +93,15 @@ public class ParentRepository extends DbConnector {
         String city = sc.nextLine();
         System.out.println("Enter the state: ");
         String state = sc.nextLine();
-        System.out.println("Enter the zip: ");
+        System.out.println("Enter the zip (In numeric): ");
         String zip = sc.next();
+
+        Validator validator = new Validator();
+        if (!validator.validateName(firstName) || !validator.validateName(lastName) || !validator.validateState(state) ||
+                !validator.validateCity(city) || !validator.validateStreet(street) || !validator.validateZip(zip)) {
+            System.out.println("Invalid input data! Try again with valid input type.");
+            return null;
+        }
 
         existingParent.setFirstName(firstName);
         existingParent.setLastName(lastName);
