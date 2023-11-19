@@ -11,7 +11,7 @@ This is a Java console application utilizing an H2 in-memory database with Hiber
 2. Install **Apache Maven 3.6.3**
 
 3. **Clone or download the application**:
-    - Clone the repository or download the executable JAR file to your local machine.
+    - download the executable JAR file to your local machine from https://github.com/HabibRh26/UDP/tree/master/executable
 
 ## Running the Application
 
