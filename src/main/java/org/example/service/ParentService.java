@@ -22,6 +22,7 @@ public class ParentService {
         }
 
         else {
+            displayCurrentTable();
             System.out.println("-----------------------------------------------------------------------------");
             System.out.println("Enter the id of which you want to delete");
             try {
@@ -46,8 +47,11 @@ public class ParentService {
     public void updateParent() {
         ParentRepository parentRepository = new ParentRepository();
         int dataSize = parentRepository.getAllParents().size();
-        if (dataSize == 0)
+        if (dataSize == 0) {
+            System.out.println("-----------------------------------------");
             System.err.println("No data available. Please insert some data.");
+        }
+
         else {
             parentRepository = new ParentRepository();
             displayCurrentTable();
@@ -108,7 +112,9 @@ public class ParentService {
             parentEntity.getChildren().add(children);
 
             parentRepository.save(parentEntity);
+            System.err.println("-----------------------------------------");
             System.out.println("Saved successfully");
+            System.err.println("-----------------------------------------");
             System.out.println("Here is the table data- ");
 
             displayCurrentTable();
