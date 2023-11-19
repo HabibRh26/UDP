@@ -102,7 +102,10 @@ public class ParentService {
             addressEntity.setStreet(street);
             addressEntity.setZip(zip);
             parentEntity.setAddressEntity(addressEntity);
-            parentEntity.getChildren().add(addChildren(parentEntity));
+            ChildEntity children = addChildren(parentEntity);
+            if (Objects.isNull(children))
+                return;
+            parentEntity.getChildren().add(children);
 
             parentRepository.save(parentEntity);
             System.out.println("Saved successfully");
@@ -145,11 +148,16 @@ public class ParentService {
     }
 
     private ChildEntity addChildren(ParentEntity parentEntity) {
+        Validator validator = new Validator();
+        System.out.println("---------------------------------------");
         System.out.println("Enter the firstName of the child: ");
         Scanner sc = new Scanner(System.in);
         String firstName = sc.nextLine();
         System.out.println("Enter the lastName of the child: ");
         String lastName = sc.nextLine();
+
+        if (!validator.validateName(firstName) || !validator.validateName(lastName))
+            System.err.println("Invalid input data! Try again with valid input type.");
 
         ChildEntity childEntity = new ChildEntity();
         childEntity.setFirstName(firstName);
