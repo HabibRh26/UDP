@@ -21,7 +21,7 @@ This is a Java console application utilizing an H2 in-memory database with Hiber
 2. **Run the JAR file**:
     - Execute the following command to run the application:
       ```
-      java -jar udp-1.0.jar
+      java -jar udp.jar
       ```
 
 ## Usage
